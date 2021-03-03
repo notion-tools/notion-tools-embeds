@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Open Sans,arial,Apple SD Gothic Neo,Noto Sans CJK KR,본고딕,KoPubDotum,나눔바른고딕,나눔고딕,NanumGothic,맑은고딕,Malgun Gothic,sans-serif !important;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+.divver {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type=button] {
+    background-color: #6578D8;
+    border: 0;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #ffffff;
+    transition: background-color 120ms ease-in 0s;
+    padding: 7px 12px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+#embed {
+    width: 100%;
+
+    .making_info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .info_title {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: #a39d9d;
+            font-size: 12px;
+        }
+    }
+
+    .input_line {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    input {
+        font-family: 'Noto Sans KR', sans-serif;
+        margin-top: 10px;
+        border: 1px solid #c4c2c2;
+        border-radius: 4px;
+        padding: 7px 10px;
+        background: #ffffff;
+        color: #111111;
+    }
+
+    .warn_border {
+        box-shadow: 0 0 5px #e042429a;
+    }
+
+    input::placeholder {
+        color: #c4c4c4;
+    }
+
+    .input_text {
+        width: 100%;
+        transition: box-shadow 120ms ease-in 0s;
+    }
+
+    .input_make, .input_button {
+        cursor: pointer;
+        transition: background-color 120ms ease-in 0s;
+        background-color: #faf8f8;
+    }
+
+    .input_make:hover, .input_button:hover {
+        background-color: #f1eded;
+    }
+
+    .input_theme_white {
+        cursor: pointer;
+        transition: background-color 120ms ease-in 0s;
+        background-color: #faf8f8;
+    }
+
+    .input_theme_white:hover {
+        background-color: #f1eded;
+    }
+
+    .input_theme_black {
+        cursor: pointer;
+        transition: background-color 120ms ease-in 0s;
+        background-color: #444444;
+        color: #fff;
+    }
+
+    .input_theme_black:hover {
+        background-color: #555555;
+    }
+
+    .input_set {
+        display: flex;
+        justify-content: left;
+    }
+
+    .output {
+        display: flex;
+        justify-content: left;
+        margin-top: 30px;
+
+        .output_link {
+            width: calc(100% - 80px - 20px);
+            border-right: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .output_copy {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            width: 80px;
+            cursor: pointer;
+            background-color: #faf8f8;
+            transition: background-color 120ms ease-in 0s;
+        }
+
+        .output_copy:hover {
+            background-color: #f1eded;
+            
+        }
+    }
+
+}
+
+
