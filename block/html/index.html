@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158793073-9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-158793073-9');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<title>노션툴즈 dday</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+</style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+<script>
+    function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+    return results === null
+      ? ""
+      : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  let code = atob(getParameterByName("code"))
+  let root = document.getElementById("root")
+
+  if (code.slice(-2) == "nt") {
+    root.innerHTML = code.slice(0,-2);
+  } else {
+    root.innerHTML = "링크를 다시 생성해주세요. <a href='https://www.notion-tools.com/embeds/html'>노션툴즈</a>";
+  }
+
+
+
+</script>
+
+</body>
+
+</html>

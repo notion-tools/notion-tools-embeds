@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -56,7 +55,6 @@ input[type=button] {
 }
 
 #embed .making_info .info_title {
-  font-family: 'Noto Sans KR', sans-serif;
   color: #a39d9d;
   font-size: 12px;
 }
@@ -71,7 +69,6 @@ input[type=button] {
 }
 
 #embed input {
-  font-family: 'Noto Sans KR', sans-serif;
   margin-top: 10px;
   border: 1px solid #c4c2c2;
   border-radius: 4px;
@@ -107,6 +104,19 @@ input[type=button] {
   transition: -webkit-box-shadow 120ms ease-in 0s;
   transition: box-shadow 120ms ease-in 0s;
   transition: box-shadow 120ms ease-in 0s, -webkit-box-shadow 120ms ease-in 0s;
+}
+
+#embed textarea {
+  margin-top: 10px;
+  height: 150px;
+  width: 100%;
+  border: 1px solid #c4c2c2;
+  border-radius: 4px;
+  padding: 7px 10px;
+  background: #ffffff;
+  color: #111111;
+  resize: vertical;
+  font-size: 14px;
 }
 
 #embed .input_make, #embed .input_button {
