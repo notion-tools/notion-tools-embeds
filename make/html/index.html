@@ -36,7 +36,7 @@
 
     <script>
         const makeLink = () => {
-            const htmlCode = btoa($("#code").val() + "nt");
+            const htmlCode = encodeURIComponent($("#code").val() + "nt");
             const url = "https://embed.notion-tools.com/block/html/?c=" + htmlCode;
             $("#output_link").val(url);
         }
