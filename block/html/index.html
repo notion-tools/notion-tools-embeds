@@ -25,7 +25,6 @@
 </head>
 
 <body>
-    <div id="root"></div>
 <script>
   function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -40,7 +39,9 @@
   let root = document.getElementById("root")
 
   if (code.slice(-2) == "nt") {
-    root.innerHTML = code.slice(0,-2);
+    // root.innerHTML = code.slice(0,-2);
+    // root.insertAdjacentHTML("afterbegin", code.slice(0,-2))
+    document.write(code.slice(0,-2))
   } else {
     root.innerHTML = "링크를 다시 생성해주세요. <a href='https://www.notion-tools.com/embeds/html'>노션툴즈</a>";
   }
