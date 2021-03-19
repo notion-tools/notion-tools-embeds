@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notion Tools - 노션툴즈</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <style>
+        /* 정식 배포 */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.black {
+    background-color: rgb(47, 52, 55);
+}
+
+.white {
+    background-color: rgb(255, 255, 255);
+}
+    </style>
+</head>
+<body>
+    <div id="main">
+        <a id="link" href="https://notion-tools.com/embed/imglink" target="_blank"><img id="img" src="img.png" alt="노션툴즈 이미지 링크"></a>
+        <div style="display: none;">노션툴즈 이미지링크 배포</div>
+        <h1 style="display: none;">노션툴즈 이미지링크 배포</h1>
+    </div>
+
+    <script>
+          function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+    return results === null
+      ? ""
+      : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  const Theme = getParameterByName("t");
+  const Imglink = decodeURIComponent(getParameterByName("i"))
+  const Hyperlink = decodeURIComponent(getParameterByName("l"))
+
+  if (Theme == "black") {
+      $("body").addClass("black")
+  } else {
+    $("body").addClass("white")
+  }
+
+  console.log(Imglink)
+  console.log(Hyperlink)
+
+  if (Imglink && Hyperlink) {
+    $("#img").attr("src", Imglink);
+    $("#link").attr("href", Hyperlink);
+  }
+  
+    </script>
+</body>
+</html>
