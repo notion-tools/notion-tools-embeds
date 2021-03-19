@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Notion Tools - 노션툴즈</title>
+    <link rel="stylesheet" href="../modal.css">
+</head>
+
+<body>
+    <div id="modal" onclick="$(this).removeClass(`modal_show`)">
+        <div class="modal_text">비밀번호가 틀린 것 같아요.</div>
+    </div>
+    <div class="divver">
+        <div id="embed">
+            <div class="input_line">
+                <input type="text" class="input_text" id="input_img" placeholder="이미지의 링크를 넣어주세요.">
+            </div>
+            <div class="input_line">
+                <input type="text" class="input_text" id="input_link"
+                    placeholder="이동할 링크를 넣어주세요. (ex. https://notion-tools.com)">
+            </div>
+
+            <div class="input_line">
+                <div class="input_set">
+                    <input type="button" class="input_theme_white" id="input_theme" value="🌞 밝은 배경"
+                        style="margin-right: 10px;">
+                </div>
+                <input type="button" id="input_make" class="input_make" value="링크 생성하기">
+            </div>
+
+            <div class="output">
+                <input type="text" id="output_link" class="output_link" placeholder="" readonly>
+                <input type="button" value="복사하기" class="output_copy" onclick="linkCopy()">
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var theme_color = "white";
+
+        const modal = (modal, mode) => {
+            $(".modal_text").text(modal);
+            if (mode === "good") {
+                $("#modal").css("background-color", "#5691d4")
+                $("#modal").addClass("modal_show");
+            } else if (mode === "bad") {
+                $("#modal").css("background-color", "#df5151")
+                $("#modal").addClass("modal_show");
+            }
+
+            setTimeout(() => {
+                $("#modal").removeClass("modal_show");
+            }, 3000)
+        }
+
+        function copylink() {
+            var copyText = document.getElementById("output_link");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+        }
+
+        $("#input_theme").click(function () {
+            if (theme_color == "white") {
+                theme_color = "black";
+                $(this).addClass("input_theme_black")
+                $(this).removeClass("input_theme_white")
+                $(this).val("🌜 어두운 배경")
+
+            } else {
+                theme_color = "white";
+                $(this).addClass("input_theme_white")
+                $(this).removeClass("input_theme_black")
+                $(this).val("🌞 밝은 배경")
+            }
+
+        })
+
+        $("#input_make").click(function () {
+            var imglink = encodeURIComponent($("#input_img").val());
+            var hyperlink = encodeURIComponent($("#input_link").val());
+            var theme;
+
+            console.log(theme_color)
+
+            if (theme_color == "black") {
+                theme = "black";
+            } else {
+                theme = "white";
+            }
+            if (imglink != "" && hyperlink != "") {
+                var output = `https://embed.noiton-tools.com/block/imglink/?t=${theme}&i=${imglink}&l=${hyperlink}`;
+                $("#output_link").val(output);
+                copylink();
+                modal("링크 복사 완료", "good")
+            } else {
+                modal("비어있는 값이 있습니다", "bad")
+            }
+        })
+
+        const linkCopy = () => {
+            if ($("#output_link").val() == "") {
+                modal("링크를 먼저 생성해주세요.", "bad")
+            } else {
+                copylink()
+                modal("링크 복사 완료", "good")
+            }
+        }
+    </script>
+</body>
+
+</html>
