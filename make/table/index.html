@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B71G27CBP0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-B71G27CBP0');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Notion Tools - 노션툴즈</title>
+    <link rel="stylesheet" href="../modal.css">
+    <link rel="stylesheet" href="table.css">
+    <script src="../moudle.js"></script>
+    <script src="table.js"></script>
+    <style>
+        table {
+            width: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="modal" onclick="$(this).removeClass(`modal_show`)">
+        <div class="modal_text"></div>
+    </div>
+
+    <div class="divver" style="align-items: flex-start;">
+        <div id="embed">
+            <div class="input_line">
+                <textarea id="table" placeholder="도움말을 참고하여 테이블을 작성해주세요."></textarea>
+            </div>
+
+            <div class="input_line">
+                <div class="box" id="table-preview">
+
+                </div>
+            </div>
+
+            <div class="output">
+                <input type="text" id="output_link" class="output_link" placeholder="" readonly>
+                <input type="button" value="복사하기" class="output_copy" onclick="linkCopy()">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var timer;
+
+        document.querySelector('#table').addEventListener('input', function (e) {
+            if (timer) {
+                clearTimeout(timer);
+            }
+            timer = setTimeout(function () {
+                if ($('#table').val()) {
+                    let table_html = get_table($('#table').val())
+                    if (table_html) {
+                        document.getElementById('table-preview').innerHTML = table_html
+                        $('#output_link').val(`https://embed.notion-tools.com/block/table/?table=${encodeURIComponent($('#table').val())}`)
+                    } else {
+                        document.getElementById('table-preview').innerHTML = "테이블이 형식에 맞지 않습니다."
+                        $('#output_link').val("")
+                    }
+                } else {
+                    document.getElementById('table-preview').innerHTML = ""
+                    $('#output_link').val("")
+                }
+            }, 500);
+        });
+
+        const linkCopy = () => {
+            if ($("#output_link").val() == "") {
+                modal("테이블을 먼저 완성해주세요", "bad")
+            } else {
+                copylink()
+                modal("링크 복사 완료", "good")
+            }
+        }
+    </script>
+
+</body>
+
+</html>

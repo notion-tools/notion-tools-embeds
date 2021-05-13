@@ -59,6 +59,26 @@ input[type=button] {
   font-size: 12px;
 }
 
+#embed .box {
+  margin-top: 10px;
+  width: 100%;
+  border: 1px solid #c4c2c2;
+  border-radius: 4px;
+  padding: 10px 15px;
+  background: #ffffff;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #111111;
+  resize: vertical;
+  font-size: 14px;
+}
+
+#embed .box .box_label {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 10px;
+}
+
 #embed .input_line {
   display: -webkit-box;
   display: -ms-flexbox;
