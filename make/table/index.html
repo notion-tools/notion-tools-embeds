@@ -17,10 +17,26 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <title>Notion Tools - 노션툴즈</title>
     <link rel="stylesheet" href="../modal.css">
-    <link rel="stylesheet" href="table.css">
     <script src="../moudle.js"></script>
     <script src="table.js"></script>
     <style>
+        .black {
+            background-color: rgb(47, 52, 55);
+            color: #ffffff;
+        }
+
+        .black table {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .black td {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .white {
+            background-color: #ffffff;
+        }
+
         table {
             width: 100%;
             border: 1px solid rgba(0, 0, 0, 0.3);
@@ -45,10 +61,13 @@
             <div class="input_line">
                 <textarea id="table" placeholder="도움말을 참고하여 테이블을 작성해주세요."></textarea>
             </div>
+            <div class="input_line">
+                <input type="button" class="input_theme_white" id="input_theme" value="🌞 밝은 배경"
+                    style="margin-right: 10px;">
+            </div>
 
             <div class="input_line">
                 <div class="box" id="table-preview">
-
                 </div>
             </div>
 
@@ -60,27 +79,48 @@
     </div>
 
     <script>
-        var timer;
+        let theme_color = 'white';
+        $("#input_theme").click(function () {
+            if (theme_color == "white") {
+                theme_color = "black";
+                make_table()
+                $('.box').css('background-color', "rgb(47, 52, 55)")
+                $(this).addClass("input_theme_black")
+                $(this).removeClass("input_theme_white")
+                $(this).val("🌜 어두운 배경")
 
+            } else {
+                theme_color = "white";
+                make_table()
+                $('.box').css('background-color', "#ffffff")
+                $(this).addClass("input_theme_white")
+                $(this).removeClass("input_theme_black")
+                $(this).val("🌞 밝은 배경")
+            }
+        })
+
+        const make_table = () => {
+            if ($('#table').val()) {
+                let table_html = get_table($('#table').val())
+                if (table_html) {
+                    document.getElementById('table-preview').innerHTML = `<div class="${theme_color}" id="main">${table_html}</div>`
+                    $('#output_link').val(`https://embed.notion-tools.com/block/table/?theme=${theme_color}&table=${encodeURIComponent($('#table').val())}`)
+                } else {
+                    document.getElementById('table-preview').innerHTML = "테이블이 형식에 맞지 않습니다."
+                    $('#output_link').val("")
+                }
+            } else {
+                document.getElementById('table-preview').innerHTML = ""
+                $('#output_link').val("")
+            }
+        }
+
+        let timer;
         document.querySelector('#table').addEventListener('input', function (e) {
             if (timer) {
                 clearTimeout(timer);
             }
-            timer = setTimeout(function () {
-                if ($('#table').val()) {
-                    let table_html = get_table($('#table').val())
-                    if (table_html) {
-                        document.getElementById('table-preview').innerHTML = table_html
-                        $('#output_link').val(`https://embed.notion-tools.com/block/table/?table=${encodeURIComponent($('#table').val())}`)
-                    } else {
-                        document.getElementById('table-preview').innerHTML = "테이블이 형식에 맞지 않습니다."
-                        $('#output_link').val("")
-                    }
-                } else {
-                    document.getElementById('table-preview').innerHTML = ""
-                    $('#output_link').val("")
-                }
-            }, 500);
+            timer = setTimeout(make_table, 500);
         });
 
         const linkCopy = () => {
