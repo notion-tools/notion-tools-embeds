@@ -23,11 +23,16 @@
         }
 
         .black table {
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgb(77, 81, 83);
         }
 
         .black td {
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgb(77, 81, 83);
+            color: #ffffff;
+        }
+
+        .black .table_column {
+            color: rgba(255, 255, 255, 0.6)
         }
 
         .white {
@@ -35,15 +40,31 @@
         }
 
         table {
+            box-sizing: border-box;
             width: 100%;
-            border: 1px solid rgba(0, 0, 0, 0.3);
+            /* border: 1px solid rgba(0, 0, 0, 0.3); */
+            /* border-top: 1px solid rgb(223, 223, 222); */
+            /* box-shadow: white -3px 0px 0px, rgb(223, 223, 222) 0px 1px 0px; */
+            line-height: 1.5;
             border-collapse: collapse;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+            -webkit-font-smoothing: auto;
         }
 
         td {
-            border: 1px solid rgba(0, 0, 0, 0.3);
+            /* border: 1px solid rgba(0, 0, 0, 0.3); */
+            border: 1px solid rgba(55, 53, 47, 0.09);
             box-sizing: border-box;
             padding: 5px 10px;
+            height: 32px;
+            font-size: 16px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .table_column {
+            color: rgba(55, 53, 47, 0.6);
         }
     </style>
 </head>

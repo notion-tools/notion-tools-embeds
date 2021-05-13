@@ -56,12 +56,18 @@ let get_table = text => {
     
     // HTMl 변환
     html = '<table>'
-    table.forEach((row) => {
+    table.forEach((row, row_index) => {
         html = html + '<tr>'
-        if (table_column_align != []) {
-            row.forEach((sell,sell_index) => {
-                html = html + `<td style="text-align: ${table_column_align[sell_index]};">${sell}</td>`
-            })
+        if (table_column_align.length > 0) {
+            if (row_index == 0) {
+                row.forEach((sell,sell_index) => {
+                    html = html + `<td class="table_column" style="text-align: ${table_column_align[sell_index]};">${sell}</td>`
+                })
+            } else {
+                row.forEach((sell,sell_index) => {
+                    html = html + `<td style="text-align: ${table_column_align[sell_index]};">${sell}</td>`
+                })
+            }
         } else {
             row.forEach(sell => {
                 html = html + `<td>${sell}</td>`
