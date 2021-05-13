@@ -23,6 +23,7 @@ let get_table = text => {
         if (index == 0 && splited_text.length >= 1) { table_column_num = splited_text.length }
         if (e == "") {return}
         if (splited_text.length != table_column_num) { error = true;}
+        // 첫 번째 인덱스
         if (index == 1) {
             splited_text.forEach(ee => {
                 const exp = /\:?-+\:?/
@@ -37,13 +38,15 @@ let get_table = text => {
                     else if (exp_right.test(ee)) {table_column_align.push("right"); return}
                     else {table_column_align.push("left"); return}
                 } else {
-                    if (ee) {row.push(ee.trim())}
+                    if (ee != "") {ee.trim()}
+                    row.push(ee)
                 }
             })
             table.push(row)
         } else {
             splited_text.forEach(ee => {
-                if (ee) {row.push(ee.trim())}
+                if (ee != "") {ee.trim()}
+                row.push(ee)
             })
             table.push(row)
         }
@@ -53,12 +56,12 @@ let get_table = text => {
     
     // HTMl 변환
     html = '<table>'
-    table.forEach((row, row_index) => {
+    table.forEach((row) => {
         html = html + '<tr>'
         if (table_column_align != []) {
-                row.forEach((sell,sell_index) => {
-                    html = html + `<td style="text-align: ${table_column_align[sell_index]};">${sell}</td>`
-                })
+            row.forEach((sell,sell_index) => {
+                html = html + `<td style="text-align: ${table_column_align[sell_index]};">${sell}</td>`
+            })
         } else {
             row.forEach(sell => {
                 html = html + `<td>${sell}</td>`
