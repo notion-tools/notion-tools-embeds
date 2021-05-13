@@ -85,6 +85,7 @@
                 theme_color = "black";
                 make_table()
                 $('.box').css('background-color', "rgb(47, 52, 55)")
+                $('.box').css('color', "#ffffff")
                 $(this).addClass("input_theme_black")
                 $(this).removeClass("input_theme_white")
                 $(this).val("🌜 어두운 배경")
@@ -93,6 +94,7 @@
                 theme_color = "white";
                 make_table()
                 $('.box').css('background-color', "#ffffff")
+                $('.box').css('color', "#000000")
                 $(this).addClass("input_theme_white")
                 $(this).removeClass("input_theme_black")
                 $(this).val("🌞 밝은 배경")
@@ -104,7 +106,7 @@
                 let table_html = get_table($('#table').val())
                 if (table_html) {
                     document.getElementById('table-preview').innerHTML = `<div class="${theme_color}" id="main">${table_html}</div>`
-                    $('#output_link').val(`https://embed.notion-tools.com/block/table/?theme=${theme_color}&table=${encodeURIComponent($('#table').val())}`)
+                    $('#output_link').val(`https://embed.notion-tools.com/block/table/?t=${theme_color}&tb=${encodeURIComponent($('#table').val())}`)
                 } else {
                     document.getElementById('table-preview').innerHTML = "테이블이 형식에 맞지 않습니다."
                     $('#output_link').val("")
