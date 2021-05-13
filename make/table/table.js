@@ -32,7 +32,6 @@ let get_table = text => {
                     const exp_left = /^\:-+$/
                     const exp_center = /^\:-+\:$/
                     const exp_right = /^-+\:$/
-                    console.log(ee);
                     if (exp_left.test(ee)) {table_column_align.push("left"); return}
                     else if (exp_center.test(ee)) {table_column_align.push("center"); return}
                     else if (exp_right.test(ee)) {table_column_align.push("right"); return}
