@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notion Tools - 노션툴즈</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B71G27CBP0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-B71G27CBP0');
+    </script>
+    <script src="table.js"></script>
+    <style>
+        .black {
+            background-color: rgb(47, 52, 55);
+            color: #ffffff;
+        }
+
+        .black table {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .black td {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .white {
+            background-color: #ffffff;
+        }
+
+        table {
+            width: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+    </div>
+
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null
+                ? ""
+                : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        let theme = getParameterByName('t')
+        if (theme == "black") {
+            $("body").addClass("black")
+        } else {
+            $("body").addClass("white")
+        }
+
+
+        let text = getParameterByName('tb')
+        if (text) {
+            let table_html = get_table(text)
+            if (table_html) {
+                document.getElementById('main').innerHTML = table_html
+            } else {
+                document.getElementById('main').innerHTML = "테이블 정보가 올바르지 않습니다. <a href='https://www.notion-tools.com/embeds/table'>Notion Tools</a>에서 테이블 블록을 제작해주세요.<br>Table info is not vaild. Please make a Table Block in <a href='https://www.notion-tools.com/embeds/table'>Notion Tools</a>."
+            }
+        } else {
+            document.getElementById('main').innerHTML = "테이블 정보를 찾을 수 없습니다. <a href='https://www.notion-tools.com/embeds/table'>Notion Tools</a>에서 테이블 블록을 제작해주세요.<br>Table info not found. Please make a Table Block in <a href='https://www.notion-tools.com/embeds/table'>Notion Tools</a>"
+        }
+
+        
+
+
+    </script>
+</body>
+
+</html>

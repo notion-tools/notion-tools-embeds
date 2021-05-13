@@ -43,6 +43,25 @@ input[type=button] {
         }
     }
 
+    .box {
+        margin-top: 10px;
+        width: 100%;
+        border: 1px solid #c4c2c2;
+        border-radius: 4px;
+        padding: 10px 15px;
+        background: #ffffff;
+        box-sizing: border-box;
+        color: #111111;
+        resize: vertical;
+        font-size: 14px;
+
+        .box_label {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: 10px;
+        }
+    }
+
     .input_line {
         display: flex;
         justify-content: space-between;
@@ -72,7 +91,6 @@ input[type=button] {
     }
 
     textarea {
-        
         margin-top: 10px;
         height: 150px;
         width: 100%;
