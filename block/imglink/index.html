@@ -13,12 +13,9 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-B71G27CBP0');
     </script>
     <style>
-        /* 정식 배포 */
-
         * {
             padding: 0;
             margin: 0;
@@ -47,6 +44,7 @@
             background-color: rgb(255, 255, 255);
         }
     </style>
+    <script src="../notion-tools-block-module.js"></script>
 </head>
 
 <body>
@@ -58,33 +56,13 @@
     </div>
 
     <script>
-        function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-            return results === null
-                ? ""
-                : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
-
-        const Theme = getParameterByName("t");
+        apply_theme()
         const Imglink = decodeURIComponent(getParameterByName("i"))
         const Hyperlink = decodeURIComponent(getParameterByName("l"))
-
-        if (Theme == "black") {
-            $("body").addClass("black")
-        } else {
-            $("body").addClass("white")
-        }
-
-        console.log(Imglink)
-        console.log(Hyperlink)
-
         if (Imglink && Hyperlink) {
             $("#img").attr("src", Imglink);
             $("#link").attr("href", Hyperlink);
         }
-
     </script>
 </body>
 
