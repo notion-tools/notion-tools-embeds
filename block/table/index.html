@@ -16,6 +16,7 @@
         gtag('config', 'G-B71G27CBP0');
     </script>
     <script src="table.js"></script>
+    <script src="../notion-tools-block-module.js"></script>
     <style>
         .black {
             background-color: rgb(47, 52, 55);
@@ -42,9 +43,6 @@
         table {
             box-sizing: border-box;
             width: 100%;
-            /* border: 1px solid rgba(0, 0, 0, 0.3); */
-            /* border-top: 1px solid rgb(223, 223, 222); */
-            /* box-shadow: white -3px 0px 0px, rgb(223, 223, 222) 0px 1px 0px; */
             line-height: 1.5;
             border-collapse: collapse;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
@@ -52,7 +50,6 @@
         }
 
         td {
-            /* border: 1px solid rgba(0, 0, 0, 0.3); */
             border: 1px solid rgba(55, 53, 47, 0.09);
             box-sizing: border-box;
             padding: 5px 10px;
@@ -74,22 +71,7 @@
     </div>
 
     <script>
-        function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-            return results === null
-                ? ""
-                : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
-
-        let theme = getParameterByName('t')
-        if (theme == "black") {
-            $("body").addClass("black")
-        } else {
-            $("body").addClass("white")
-        }
-
+        apply_theme()
 
         let text = getParameterByName('tb')
         if (text) {
@@ -102,10 +84,6 @@
         } else {
             document.getElementById('main').innerHTML = "테이블 정보를 찾을 수 없습니다. <a href='https://www.notion-tools.com/embeds/table'>Notion Tools</a>에서 테이블 블록을 제작해주세요.<br>Table info not found. Please make a Table Block in <a href='https://www.notion-tools.com/embeds/table'>Notion Tools</a>"
         }
-
-        
-
-
     </script>
 </body>
 

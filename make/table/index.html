@@ -17,8 +17,8 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <title>Notion Tools - 노션툴즈</title>
     <link rel="stylesheet" href="../modal.css">
-    <script src="../moudle.js"></script>
     <script src="table.js"></script>
+    <script src="../module.js"></script>
     <style>
         .black {
             background-color: rgb(47, 52, 55);
@@ -152,6 +152,7 @@
             } else {
                 copylink()
                 modal("링크 복사 완료", "good")
+                make_embed($("#output_link").val())
             }
         }
     </script>

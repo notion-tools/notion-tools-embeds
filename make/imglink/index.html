@@ -17,6 +17,7 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <title>Notion Tools - 노션툴즈</title>
     <link rel="stylesheet" href="../modal.css">
+    <script src="../module.js"></script>
 </head>
 
 <body>
@@ -51,29 +52,6 @@
 
     <script>
         var theme_color = "white";
-
-        const modal = (modal, mode) => {
-            $(".modal_text").text(modal);
-            if (mode === "good") {
-                $("#modal").css("background-color", "#5691d4")
-                $("#modal").addClass("modal_show");
-            } else if (mode === "bad") {
-                $("#modal").css("background-color", "#df5151")
-                $("#modal").addClass("modal_show");
-            }
-
-            setTimeout(() => {
-                $("#modal").removeClass("modal_show");
-            }, 3000)
-        }
-
-        function copylink() {
-            var copyText = document.getElementById("output_link");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
-            document.execCommand("copy");
-        }
-
         $("#input_theme").click(function () {
             if (theme_color == "white") {
                 theme_color = "black";
@@ -106,6 +84,7 @@
                 $("#output_link").val(output);
                 copylink();
                 modal("링크 복사 완료", "good")
+                make_embed(output)
             } else {
                 modal("비어있는 값이 있습니다", "bad")
             }

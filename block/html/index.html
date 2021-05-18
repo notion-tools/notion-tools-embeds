@@ -8,12 +8,12 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-B71G27CBP0');
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="../notion-tools-block-module.js"></script>
 <title>노션툴즈 HTML블록</title>
 <style>
     * {
@@ -22,23 +22,12 @@
     }
 
 </style>
-
 </head>
 
 <body>
 <script>
-  function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-      results = regex.exec(location.search);
-    return results === null
-      ? ""
-      : decodeURIComponent(results[1].replace(/\+/g, " "));
-  }
-
   let code = decodeURIComponent(getParameterByName("c"))
   let root = document.getElementById("root")
-
   if (code.slice(-2) == "nt") {
     history.pushState(null,null,"index.html")
     document.write(code.slice(0,-2))
@@ -46,7 +35,5 @@
     document.write("링크를 다시 생성해주세요. <a href='https://www.notion-tools.com/embeds/html'>노션툴즈</a>")
   }
 </script>
-
 </body>
-
 </html>
