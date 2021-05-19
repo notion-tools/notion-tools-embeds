@@ -27,7 +27,7 @@ function copylink() {
 const make_embed = (name) => {
     if (window.location != window.parent.location) {
         $.ajax({
-            url: 'https://api2.notion-tools.com/make_embed',
+            url: 'https://api2.notion-tools.com/v1/make_embed',
             data: {
                 link: name,
             },
