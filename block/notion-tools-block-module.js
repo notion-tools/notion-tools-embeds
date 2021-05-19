@@ -23,7 +23,7 @@ function apply_theme() {
 
 if (window.location != window.parent.location) {
     $.ajax({
-        url: 'https://api2.notion-tools.com/embed',
+        url: 'https://api2.notion-tools.com/v1/embed',
         data: {
             in: document.location.href,
             out: document.referrer
