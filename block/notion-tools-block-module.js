@@ -22,17 +22,22 @@ function apply_theme() {
 }
 
 if (window.location != window.parent.location) {
-    $.ajax({
-        url: 'https://api2.notion-tools.com/v1/embed',
-        data: {
-            in: document.location.href,
-            out: document.referrer
-        },
-        type: "POST",
-        dataType: "json"
-    }).done(json => {
-        console.log("Server connection successful")
-    }).fail((xhr, status, errorThrown) => {
-        console.log(`Server connect fail ${status} ${errorThrown}`)
-    } )
+    out_url = document.referrer
+} else {
+    out_url = document.location.href
 }
+
+$.ajax({
+    url: 'https://api2.notion-tools.com/v1/embed',
+    data: {
+        in: document.location.href,
+        out: out_url
+    },
+    type: "POST",
+    dataType: "json"
+}).done(json => {
+    console.log("Server connection successful")
+}).fail((xhr, status, errorThrown) => {
+    console.log(`Server connect fail ${status} ${errorThrown}`)
+} )
+
