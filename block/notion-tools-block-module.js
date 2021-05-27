@@ -21,10 +21,15 @@ function apply_theme() {
     }
 }
 
+var our_url;
 if (window.location != window.parent.location) {
     out_url = document.referrer
 } else {
     out_url = document.location.href
+}
+
+if (!out_url) {
+    out_url = document.location.ancestorOrigins[0]
 }
 
 $.ajax({
@@ -36,7 +41,7 @@ $.ajax({
     type: "POST",
     dataType: "json"
 }).done(json => {
-    console.log("Server connection successful")
+    console.log(json)
 }).fail((xhr, status, errorThrown) => {
     console.log(`Server connect fail ${status} ${errorThrown}`)
 } )
