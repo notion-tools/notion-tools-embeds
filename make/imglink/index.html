@@ -18,6 +18,15 @@
     <title>Notion Tools - 노션툴즈</title>
     <link rel="stylesheet" href="../modal.css">
     <script src="../module.js"></script>
+    <style>
+        .box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+    </style>
 </head>
 
 <body>
@@ -42,6 +51,12 @@
                 <input type="button" id="input_make" class="input_make" value="링크 생성하기">
             </div>
 
+            <div class="input_line">
+                <div class="box">
+                    <iframe src="" frameborder="0" id="preview"></iframe>
+                </div>
+            </div>
+
             <div class="output">
                 <input type="text" id="output_link" class="output_link" placeholder="" readonly>
                 <input type="button" value="복사하기" class="output_copy" onclick="linkCopy()">
@@ -58,37 +73,77 @@
                 $(this).addClass("input_theme_black")
                 $(this).removeClass("input_theme_white")
                 $(this).val("🌜 어두운 배경")
-
             } else {
                 theme_color = "white";
                 $(this).addClass("input_theme_white")
                 $(this).removeClass("input_theme_black")
                 $(this).val("🌞 밝은 배경")
             }
+            makeImglink()
         })
+
+        const makeImglink = () => {
+            let imglink = $("#input_img").val();
+            let hyperlink = $("#input_link").val();
+            let regex_url = /https?:\/\/.+/
+
+            if (imglink == "" && hyperlink == "") {
+                $("#preview").attr("src", "");
+                $("#output_link").val("");
+                return false
+            } else if (imglink == "") {
+                $("#preview").attr("src", "");
+                $("#output_link").val("이미지의 링크를 넣어주세요.");
+                return false
+            } else if (hyperlink == "") {
+                $("#preview").attr("src", "");
+                $("#output_link").val("이동할 링크를 넣어주세요.");
+                return false
+            } else if (!regex_url.test(imglink)) {
+                $("#preview").attr("src", "");
+                $("#output_link").val("이미지의 링크가 올바르지 않아요. (\"https://\" 로 시작해야 합니다.)");
+                return false
+            } else if (!regex_url.test(hyperlink)) {
+                $("#preview").attr("src", "");
+                $("#output_link").val("이동할 링크가 올바르지 않아요. (\"https://\" 로 시작해야 합니다.)");
+                return false
+            }
+
+            imglink = encodeURIComponent(imglink)
+            hyperlink = encodeURIComponent(hyperlink)
+
+            let theme;
+            theme_color == "black" ? theme = "black" : theme = "white"
+            var output = `https://embed.notion-tools.com/block/imglink/?t=${theme}&i=${imglink}&l=${hyperlink}`;
+            $("#preview").attr("src", output);
+            $("#output_link").val(output);
+
+            make_embed(output)
+            return true
+
+        }
 
         $("#input_make").click(function () {
-            var imglink = encodeURIComponent($("#input_img").val());
-            var hyperlink = encodeURIComponent($("#input_link").val());
-            var theme;
-
-            console.log(theme_color)
-
-            if (theme_color == "black") {
-                theme = "black";
-            } else {
-                theme = "white";
-            }
-            if (imglink != "" && hyperlink != "") {
-                var output = `https://embed.notion-tools.com/block/imglink/?t=${theme}&i=${imglink}&l=${hyperlink}`;
-                $("#output_link").val(output);
+            let res = makeImglink()
+            if (res) {
                 copylink();
-                modal("링크 복사 완료", "good")
-                make_embed(output)
-            } else {
-                modal("비어있는 값이 있습니다", "bad")
             }
         })
+
+        let timer1;
+        document.querySelector('#input_img').addEventListener('input', function (e) {
+            if (timer1) {
+                clearTimeout(timer1);
+            }
+            timer1 = setTimeout(makeImglink, 500);
+        });
+        let timer2;
+        document.querySelector('#input_link').addEventListener('input', function (e) {
+            if (timer2) {
+                clearTimeout(timer2);
+            }
+            timer2 = setTimeout(makeImglink, 500);
+        });
 
         const linkCopy = () => {
             if ($("#output_link").val() == "") {
